@@ -42,7 +42,7 @@ const PostsContextProvider = ( props ) => {
      * Trigger Hook to fetch data
      */
     useEffect( ()  => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
+        axios.get(`http://localhost/wp.dev/wp-json/wp/v2/posts`, {
             params: params
         })
         .then( (res) => {

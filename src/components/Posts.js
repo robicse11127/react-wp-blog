@@ -38,7 +38,7 @@ const Posts = () => {
                                     <Card.Img variant="top" src={item.featured_image_src} />
                                     <Card.Body>
                                         <Card.Title><a href={item.link}>{item.title.rendered}</a></Card.Title>
-                                        {renderHTML(item.content.rendered)}
+                                        {renderHTML(item.excerpt.rendered)}
                                         <Card.Text>
                                             In: 
                                             {
