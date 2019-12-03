@@ -2,9 +2,12 @@ import React, { useContext } from 'react'
 import renderHTML from 'react-render-html';
 import { PostsContext } from '../contexts/PostsContext';
 import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Posts = () => {
-
+    /**
+     * Destructuring PostsContext
+     */
     const {posts, meta, next, prev} = useContext(PostsContext);
 
     return (
@@ -19,6 +22,9 @@ const Posts = () => {
             <Container className="mt-5 mb-5">
                 <Row>
                 {
+                    /**
+                     * Mapping through posts
+                     */
                     posts.map( (item, index) => {
                         return(
                             <Col md={4} key={index}>
@@ -28,8 +34,11 @@ const Posts = () => {
                                         <Card.Title><a href={item.link}>{item.title.rendered}</a></Card.Title>
                                         {renderHTML(item.content.rendered)}
                                         <Card.Text>
-                                            
-                                            In: {
+                                            In: 
+                                            {
+                                                /**
+                                                 * Mapping through post terms
+                                                 */
                                                 item.post_terms.map((term) => {
                                                     return(
                                                         <a href={term.url} key={term.id}>{term.name}, </a>
@@ -38,7 +47,9 @@ const Posts = () => {
                                             }
                                             On: {item.published_on}
                                         </Card.Text>
-                                        <Button variant="outline-primary" href={item.link}>Read More</Button>
+                                        <Link to={item.slug}>
+                                            <Button variant="outline-primary">Read More</Button>
+                                        </Link>
                                     </Card.Body>
                                     <Card.Footer>
                                         <small className="text-muted">By:  <a href={item.author_details.user_url}>{item.author_details.user_nicename}</a></small>
