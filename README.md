@@ -1,2 +1,2 @@
 # react-wp-blog
-A react blog using WP rest api
+A React blog using WP Rest API
