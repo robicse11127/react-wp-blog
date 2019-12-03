@@ -10,6 +10,7 @@ import Single from './components/Single';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import PostsContextProvider from './contexts/PostsContext';
+import SingleContextProvider from './contexts/SingleContext';
 
 function App() {
 	return (
@@ -22,7 +23,9 @@ function App() {
 							<Posts />
 						</Route>
 						<Route path="/:slug">
-							<Single />
+							<SingleContextProvider>
+								<Single />
+							</SingleContextProvider>
 						</Route>
 					</Switch>
 					<Footer />

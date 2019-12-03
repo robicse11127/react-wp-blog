@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import renderHTML from 'react-render-html';
 import { PostsContext } from '../contexts/PostsContext';
+import { SingleContext } from '../contexts/SingleContext';
 import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +10,11 @@ const Posts = () => {
      * Destructuring PostsContext
      */
     const {posts, meta, next, prev} = useContext(PostsContext);
+
+    /**
+     * Destructuring SingleContext
+     */
+    // const { updateSlug } = useContext(SingleContext);
 
     return (
         <React.Fragment>
