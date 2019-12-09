@@ -27,6 +27,7 @@ const Posts = () => {
 
             <Container className="mt-5 mb-5">
                 <Row>
+                    {console.log(posts)}
                 {
                     /**
                      * Mapping through posts

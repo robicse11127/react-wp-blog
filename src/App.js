@@ -22,18 +22,18 @@ function App() {
 			<div className="App">
 				<MenuContextProvider>
 					<GeneralContextProvider>
-						<Navigation />
-						<PostsContextProvider>
-							<Switch>
+						{/* <PostsContextProvider> */}
+							<Navigation />
+							{/* <Switch>
 								<Route exact path="/">
 									<Posts />
 								</Route>
 								<Route path="/:slug">
 									<Single />
 								</Route>
-							</Switch>
+							</Switch> */}
 							<Footer />
-						</PostsContextProvider>
+						{/* </PostsContextProvider> */}
 					</GeneralContextProvider>
 				</MenuContextProvider>
 			</div>

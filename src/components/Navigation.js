@@ -25,7 +25,7 @@ const Navigation = () => {
                     <Nav className="mr-auto">
                         {
                             console.log(menus)
-                            // menus.map( (menu) => {
+                            // menus.top.map( (menu) => {
                             //     return(
                             //         <Link to="/" className="nav-link">{menu.title}</Link>
                             //     );

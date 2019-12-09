@@ -8,7 +8,7 @@ const GeneralContextProvider = ( props ) => {
     /**
      * Init General State
      */
-    const[siteInfo, setSiteInfo] = useState({});
+    const[siteInfo, setSiteInfo] = useState('');
 
     useEffect( () => {
         axios.get(`http://localhost/wp-react/wp-json/wp/v2/general`)

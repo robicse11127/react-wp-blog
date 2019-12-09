@@ -13,7 +13,6 @@ const MenuContextProvider = ( props ) => {
     useEffect( () => {
         axios.get(`http://localhost/wp-react/wp-json/wp/v2/menus`)
         .then( (res) => {
-            console.log(res.data.top)
             setMenus(res.data);
         })
     }, []);
