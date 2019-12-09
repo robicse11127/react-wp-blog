@@ -11,13 +11,12 @@ const Single = () => {
     const [post, setPost] = useState([]);
 
     useEffect( () => {
-        axios.get(`http://localhost/wp.dev/wp-json/wp/v2/posts`, {
+        axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
             params: {
                 slug: slug
             }
         })
         .then( (res) => {
-            console.log(res);
             setPost(res.data);
         })
     },[]);
@@ -28,29 +27,34 @@ const Single = () => {
                 post.map( (item, index) => {
                     return(
                         <React.Fragment key={index}>
-                            <div className="featured-image">
-                                <img src={item.featured_image_src} alt={item.title.rendered} />
-                            </div>
                             <Container>
                                 <Row>
                                     <Col md={12}>
-                                        <Jumbotron className="mb-5">
-                                            <h1>{item.title.rendered}</h1>
-                                            In: 
-                                            {
-                                                /**
-                                                 * Mapping through post terms
-                                                 */
-                                                item.post_terms.map((term) => {
-                                                    return(
-                                                        <a href={term.url} key={term.id}>{term.name}, </a>
-                                                    )
-                                                })
-                                            }
-                                            On: {item.published_on}
-                                        </Jumbotron>
+                                        <h1>{item.title.rendered}</h1>
+                                        <a href={item.author_details.user_url}>{item.author_details.user_nicename}</a>
+                                        In: 
+                                        {
+                                            /**
+                                             * Mapping through post terms
+                                             */
+                                            item.post_terms.map((term) => {
+                                                return(
+                                                    <a href={term.url} key={term.id}>{term.name}, </a>
+                                                )
+                                            })
+                                        }
+                                        On: {item.published_on}
                                     </Col>
                                 </Row>
+                            </Container>
+                            <Container fluid>
+                                <Row>
+                                <div className="featured-image" style={{backgroundImage: `url(${item.featured_image_src})`}}>
+                                    
+                                </div>
+                                </Row>
+                            </Container>
+                            <Container>
                                 <Row>
                                     <Col md={{span: 8, offset: 2}}>
                                         {renderHTML(item.content.rendered)}

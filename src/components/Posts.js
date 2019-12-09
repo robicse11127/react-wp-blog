@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import renderHTML from 'react-render-html';
 import { PostsContext } from '../contexts/PostsContext';
-import { SingleContext } from '../contexts/SingleContext';
+import { GeneralContext } from '../contexts/GeneralContext';
 import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -12,16 +12,16 @@ const Posts = () => {
     const {posts, meta, next, prev} = useContext(PostsContext);
 
     /**
-     * Destructuring SingleContext
+     * Destructuring GeneralContext
      */
-    // const { updateSlug } = useContext(SingleContext);
+    const { siteInfo } = useContext(GeneralContext);
 
     return (
         <React.Fragment>
             <Jumbotron>
                 <Container>
-                    <h1>React Blog</h1>
-                    <p>A test projcet made with React JS using WordPress Rest API</p>
+                    <h1>{siteInfo.site_title}</h1>
+                    <p>{siteInfo.site_tag_line}</p>
                 </Container>
             </Jumbotron>
 
@@ -38,7 +38,6 @@ const Posts = () => {
                                     <Card.Img variant="top" src={item.featured_image_src} />
                                     <Card.Body>
                                         <Card.Title><a href={item.link}>{item.title.rendered}</a></Card.Title>
-                                        {renderHTML(item.excerpt.rendered)}
                                         <Card.Text>
                                             In: 
                                             {
@@ -53,6 +52,7 @@ const Posts = () => {
                                             }
                                             On: {item.published_on}
                                         </Card.Text>
+                                        {/* {renderHTML(item.excerpt.rendered)} */}
                                         <Link to={item.slug}>
                                             <Button variant="outline-primary">Read More</Button>
                                         </Link>
