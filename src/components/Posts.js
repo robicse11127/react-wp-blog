@@ -39,12 +39,11 @@ const Posts = () => {
                         return(
                             <Col md={4} key={index}>
                                 <Card className="text-left">
-                                    <Card.Img variant="top" src={item.featured_image_src} />
+                                    <Card.Img variant="top" src={item.featured_image_src.medium} />
                                     <Card.Body>
                                         <Card.Title><a href={item.link}>{item.title.rendered}</a></Card.Title>
                                         <Card.Text>
-                                            In: 
-                                            {
+                                            In: {
                                                 /**
                                                  * Mapping through post terms
                                                  */

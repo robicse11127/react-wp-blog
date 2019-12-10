@@ -31,7 +31,7 @@ const Navigation = () => {
                     </Navbar.Brand>
                     <Nav className="mr-auto">
                         {
-                            menus.top.map( (menu) => {
+                            menus.primary.map( (menu) => {
                                 if(menu.parent_id != 0) {
                                     childMenus.push(menu)
                                 }else {
