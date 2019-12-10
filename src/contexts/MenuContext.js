@@ -8,7 +8,7 @@ const MenuContextProvider = ( props ) => {
     /**
      * Init Menu State
      */
-    const [menus, setMenus] = useState([]);
+    const [menus, setMenus] = useState('');
 
     useEffect( () => {
         axios.get(`http://localhost/wp-react/wp-json/wp/v2/menus`)

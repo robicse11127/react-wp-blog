@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -20,22 +20,22 @@ function App() {
 	return (
 		<Router>
 			<div className="App">
-				<MenuContextProvider>
-					<GeneralContextProvider>
-						{/* <PostsContextProvider> */}
-							<Navigation />
-							{/* <Switch>
-								<Route exact path="/">
-									<Posts />
-								</Route>
-								<Route path="/:slug">
-									<Single />
-								</Route>
-							</Switch> */}
-							<Footer />
-						{/* </PostsContextProvider> */}
-					</GeneralContextProvider>
-				</MenuContextProvider>
+				<GeneralContextProvider>
+					<MenuContextProvider>
+						<Navigation />
+							<PostsContextProvider>
+								<Switch>
+									<Route exact path="/">
+										<Posts />
+									</Route>
+									<Route path="/:slug">
+										<Single />
+									</Route>
+								</Switch>
+							</PostsContextProvider>
+						<Footer />
+					</MenuContextProvider>
+				</GeneralContextProvider>
 			</div>
 		</Router>
   );
