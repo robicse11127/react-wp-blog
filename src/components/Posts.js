@@ -57,7 +57,7 @@ const Posts = () => {
                                         <Link to={item.slug}>
                                             <Button variant="outline-primary">Read More</Button>
                                         </Link>
-                                    </Card.Body>
+                                    </Card.Body> 
                                     <Card.Footer>
                                         <small className="text-muted">By:  <a href={item.author_details.user_url}>{item.author_details.user_nicename}</a></small>
                                     </Card.Footer>
