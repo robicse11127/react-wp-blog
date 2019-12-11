@@ -6,8 +6,11 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
  * Loaidng Components
  */
 import Posts from './components/Posts';
-import Single from './components/Single';
 import Navigation from './components/Navigation';
+import Single from './components/Single';
+import Category from './components/Category';
+import Author from './components/Author';
+import Page from './components/Page';
 import Footer from './components/Footer';
 /**
  * Importing Contexts
@@ -28,8 +31,17 @@ function App() {
 									<Route exact path="/">
 										<Posts />
 									</Route>
-									<Route path="/:slug">
+									<Route exact path={"/:slug"}>
 										<Single />
+									</Route>
+									<Route exact path="/category/:id/posts">
+										<Category />
+									</Route>
+									<Route exact path="/author/:id/posts">
+										<Author />
+									</Route>
+									<Route exact path="/page/:slug">
+										<Page />
 									</Route>
 								</Switch>
 							</PostsContextProvider>

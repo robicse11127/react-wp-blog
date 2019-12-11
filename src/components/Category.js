@@ -1,24 +1,66 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import { Container, Jumbotron, Row, Col, Card, Button } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
-import { PostsContext } from '../contexts/PostsContext';
 import { GeneralContext } from '../contexts/GeneralContext';
-import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
-const Posts = () => {
+const Category = () => {
+
+    let {id} = useParams();
+
+    const [categoryPosts, setCategoryPosts] = useState([]);
+    const [params, setParams] = useState({
+        categories: id,
+        per_page: 3,
+        page: 1
+    });
+
     /**
-     * Destructuring PostsContext
+     * Init Meta State
      */
-    const {posts, meta, next, prev} = useContext(PostsContext);
+    const [meta, setMeta] = useState([]);
+
+    /**
+     * On Post Next Navigation
+     */
+    const next = () => {
+        if( params.page < meta['x-wp-totalpages'] ) {
+            setParams({
+                categories: id, 
+                per_page: params.per_page, 
+                page: parseInt(params.page, 10) + 1
+            })
+        }
+    }
+
+    /**
+     * On Post Prev Navigation
+     */
+    const prev = () => {
+        if( params.page > 1 ) {
+            setParams({
+                categories: id, 
+                per_page: params.per_page, 
+                page: parseInt(params.page, 10) - 1
+            })
+        }
+    }
 
     /**
      * Destructuring GeneralContext
      */
     const { siteInfo } = useContext(GeneralContext);
 
-    if( posts == '' ) {
-        return posts;
-    }
+    useEffect( () => {
+        axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
+            params: params
+        })
+        .then( (res) => {
+            setCategoryPosts(res.data);
+            setMeta(res.headers);
+        })
+    },[params])
 
     return (
         <React.Fragment>
@@ -35,7 +77,7 @@ const Posts = () => {
                     /**
                      * Mapping through posts
                      */
-                    posts.map( (item, index) => {
+                    categoryPosts.map( (item, index) => {
                         return(
                             <Col md={4} key={index}>
                                 <Card className="text-left">
@@ -53,7 +95,7 @@ const Posts = () => {
                                                  */
                                                 item.post_terms.map((term) => {
                                                     return(
-                                                        <Link to={'/category/'+term.id+'/posts'} key={term.id}>{term.name}, </Link>
+                                                        <Link to={'/category/'+term.id} key={term.id}>{term.name}, </Link>
                                                     )
                                                 })
                                             }
@@ -85,4 +127,4 @@ const Posts = () => {
     );
 }
  
-export default Posts;
+export default Category;

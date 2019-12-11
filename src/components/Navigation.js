@@ -31,7 +31,7 @@ const Navigation = () => {
                     </Navbar.Brand>
                     <Nav className="mr-auto">
                         {
-                            menus.primary.map( (menu) => {
+                            menus.top.map( (menu) => {
                                 if(menu.parent_id != 0) {
                                     childMenus.push(menu)
                                 }else {
@@ -45,13 +45,12 @@ const Navigation = () => {
                                     <React.Fragment>
                                         {/* <Link to={parent.slug} className="nav-link">{parent.title} */}
                                         <NavDropdown title={parent.title}>
-                                            {<NavDropdown.Item href={parent.slug}>{parent.title}</NavDropdown.Item>}
+                                            {<Link to={'/page/'+parent.slug} className="dropdown-item">{parent.title}</Link>}
                                             {
                                                 childMenus.map( (child) => {
                                                     if( parent.ID == child.parent_id ) {
                                                         return (
-                                                            
-                                                            <NavDropdown.Item href={child.slug}>{child.title}</NavDropdown.Item>
+                                                            <Link to={'/page/'+child.slug} className="dropdown-item">{child.title}</Link>
                                                         )
                                                     }
                                                 })
