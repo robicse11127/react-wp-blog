@@ -18,6 +18,8 @@ import Footer from './components/Footer';
 import GeneralContextProvider from './contexts/GeneralContext';
 import MenuContextProvider from './contexts/MenuContext';
 import PostsContextProvider from './contexts/PostsContext';
+import WidgetsContextProvider from './contexts/WidgetsContext';
+import WidgetContextProvider from './contexts/WidgetsContext';
 
 function App() {
 	return (
@@ -25,7 +27,8 @@ function App() {
 			<div className="App">
 				<GeneralContextProvider>
 					<MenuContextProvider>
-						<Navigation />
+						<WidgetContextProvider>
+							<Navigation />
 							<PostsContextProvider>
 								<Switch>
 									<Route exact path="/">
@@ -45,7 +48,8 @@ function App() {
 									</Route>
 								</Switch>
 							</PostsContextProvider>
-						<Footer />
+							<Footer />
+						</WidgetContextProvider>
 					</MenuContextProvider>
 				</GeneralContextProvider>
 			</div>
