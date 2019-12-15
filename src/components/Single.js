@@ -3,12 +3,15 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Jumbotron, Row, Col } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
+import ReactDisqusComments from 'react-disqus-comments';
 
 const Single = () => {
 
     let { slug } = useParams();
 
     const [post, setPost] = useState([]);
+
+    const disqusUrl = 'http://localhost:3000/'+slug;
 
     useEffect( () => {
         axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
@@ -19,7 +22,7 @@ const Single = () => {
         .then( (res) => {
             setPost(res.data);
         })
-    },[]);
+    },[slug]);
 
     return (
         <React.Fragment>
@@ -61,7 +64,21 @@ const Single = () => {
                                     </Col>
                                 </Row>
                             </Container>
+
+                            <Container>
+                                <Row>
+                                    <Col md={12}>
+                                    <ReactDisqusComments
+                                    shortname="react-blog-2"
+                                    identifier={disqusUrl}
+                                    title="React Blog"
+                                    url={disqusUrl}
+                                   />
+                                    </Col>
+                                </Row>
+                            </Container>
                         </React.Fragment>
+                        
                     )
                 })
             }

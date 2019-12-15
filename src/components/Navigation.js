@@ -1,15 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Navbar, NavDropdown, Nav, Button, Form, FormControl, Container } from 'react-bootstrap';
 import { GeneralContext } from '../contexts/GeneralContext';
 import { MenuContext } from '../contexts/MenuContext';
 
-const Navigation = () => {
+const Navigation = (props) => {
+    let history = useHistory();
 
     /**
      * Destructure GeneralContext
      */
     const { siteInfo } = useContext(GeneralContext);
+    const [keyword, setKeyword] = useState('');
 
     /**
      * Destructure MenuContext
@@ -21,6 +23,15 @@ const Navigation = () => {
 
     var parentMenus = [];
     var childMenus = [];
+
+    /**
+     * Search
+     */
+    const handleSearch = (e) => {
+        e.preventDefault();
+        history.push('/search/'+keyword)
+    }
+
 
     return (
         <React.Fragment>
@@ -40,17 +51,17 @@ const Navigation = () => {
                             })
                         }
                         {
-                            parentMenus.map( (parent) => {
+                            parentMenus.map( (parent, index) => {
                                 return(
-                                    <React.Fragment>
+                                    <React.Fragment key={index}>
                                         {/* <Link to={parent.slug} className="nav-link">{parent.title} */}
                                         <NavDropdown title={parent.title}>
                                             {<Link to={'/page/'+parent.slug} className="dropdown-item">{parent.title}</Link>}
                                             {
-                                                childMenus.map( (child) => {
+                                                childMenus.map( (child, index) => {
                                                     if( parent.ID == child.parent_id ) {
                                                         return (
-                                                            <Link to={'/page/'+child.slug} className="dropdown-item">{child.title}</Link>
+                                                            <Link key={index} to={'/page/'+child.slug} className="dropdown-item">{child.title}</Link>
                                                         )
                                                     }
                                                 })
@@ -61,9 +72,9 @@ const Navigation = () => {
                             })
                         }
                     </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Enter Keywords" className="mr-sm-2" />
-                        <Button variant="outline-info">Search </Button>
+                    <Form inline onSubmit={handleSearch}>
+                        <FormControl type="text" placeholder="Enter Keywords" className="mr-sm-2" value={keyword} onChange={ (e) => setKeyword(e.target.value) }  />
+                        <input type="submit" className="btn btn-info" value="Search" />
                     </Form>
                 </Container>
             </Navbar>

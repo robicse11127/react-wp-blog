@@ -2,6 +2,17 @@ import React, { useContext } from 'react';
 import { Navbar, Nav, Button, Container, Row, Col } from 'react-bootstrap';
 import { WidgetsContext } from '../contexts/WidgetsContext';
 
+import RecentPostsWidget from './widgets/RecentPosts';
+import SearchWidget from './widgets/Search';
+import RecentCommnetsWidget from './widgets/RecentComments';
+import NavMenuWidget from './widgets/NavMenu';
+import MediaImageWidget from './widgets/MediaImage';
+import MediaAudioWidget from './widgets/MediaAudio';
+import CalendarWidget from './widgets/Calendar';
+import PagesWidget from './widgets/Pages';
+import TextWidget from './widgets/Text';
+import CategoryWidget from './widgets/Category';
+
 const Footer = () => {
 
     const { widgets } = useContext(WidgetsContext);
@@ -18,21 +29,49 @@ const Footer = () => {
                         <Col md={4}>
                         {
                             widgets['sidebar-1'].map( (widget) => {
-                                return(
-                                    <Row>
-                                        <Col>
-                                            <h4>{widget.instance.title}</h4>
-                                        </Col>
-                                        {
-                                           
-                                            widget.value.map( (item) => {
-                                                return(
-                                                    <p>{item.comment_content}</p>
-                                                )
-                                            })
-                                        }
-                                    </Row>
-                                )
+                                if( widget.type == 'recent-posts' ) {
+                                    return(
+                                        <RecentPostsWidget widget={widget} />
+                                    )
+                                }else if( widget.type == 'search' ) {
+                                    return(
+                                        <SearchWidget widget={widget}/>
+                                    )
+                                }else if(widget.type == 'recent-comments') {
+                                    return(
+                                        <RecentCommnetsWidget widget={widget} />
+                                    )
+                                }else if(widget.type == 'nav_menu') {
+                                    return(
+                                        <NavMenuWidget widget={widget} />
+                                    )
+                                }else if(widget.type == 'media_image') {
+                                    return(
+                                        <MediaImageWidget widget={widget} />
+                                    )
+                                }else if(widget.type == 'media_audio') {
+                                    return(
+                                        <MediaAudioWidget widget={widget} />
+                                    )
+                                }else if(widget.type == 'calendar') {
+                                    return(
+                                        <CalendarWidget widget={widget} />
+                                    );
+                                }else if(widget.type == 'pages') {
+                                    return(
+                                        <PagesWidget widget={widget} />
+                                    );
+                                }
+                                else if(widget.type == 'text') {
+                                    return(
+                                        <TextWidget widget={widget} />
+                                    );
+                                }
+                                else if(widget.type == 'categories') {
+                                    return(
+                                        <CategoryWidget widget={widget} />
+                                    );
+                                }
                             })
                         }
                         </Col>

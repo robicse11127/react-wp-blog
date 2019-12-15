@@ -5,6 +5,8 @@ import { Container, Jumbotron, Row, Col, Card, Button } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import { GeneralContext } from '../contexts/GeneralContext';
 
+import CategoryPageHeader from '../partials/CategoryPageHeader';
+
 const Category = () => {
 
     let {id} = useParams();
@@ -66,8 +68,7 @@ const Category = () => {
         <React.Fragment>
             <Jumbotron>
                 <Container>
-                    <h1>{siteInfo.site_title}</h1>
-                    <p>{siteInfo.site_tag_line}</p>
+                   <CategoryPageHeader id={id} />
                 </Container>
             </Jumbotron>
 
@@ -95,7 +96,7 @@ const Category = () => {
                                                  */
                                                 item.post_terms.map((term) => {
                                                     return(
-                                                        <Link to={'/category/'+term.id} key={term.id}>{term.name}, </Link>
+                                                        <Link to={'/category/'+term.id+'/posts'} key={term.id}>{term.name}, </Link>
                                                     )
                                                 })
                                             }

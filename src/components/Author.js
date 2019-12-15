@@ -5,6 +5,8 @@ import { Container, Jumbotron, Row, Col, Card, Button } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import { GeneralContext } from '../contexts/GeneralContext';
 
+import AuthorPageHeader from '../partials/AuthorPageHeader';
+
 const Author = () => {
 
     let {id} = useParams();
@@ -66,8 +68,9 @@ const Author = () => {
         <React.Fragment>
             <Jumbotron>
                 <Container>
-                    <h1>{siteInfo.site_title}</h1>
-                    <p>{siteInfo.site_tag_line}</p>
+                    {/* <h1>{siteInfo.site_title}</h1>
+                    <p>{siteInfo.site_tag_line}</p> */}
+                    <AuthorPageHeader id={id} />
                 </Container>
             </Jumbotron>
 

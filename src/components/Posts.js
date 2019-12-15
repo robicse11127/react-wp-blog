@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import renderHTML from 'react-render-html';
 import { PostsContext } from '../contexts/PostsContext';
 import { GeneralContext } from '../contexts/GeneralContext';
 import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
@@ -59,7 +58,6 @@ const Posts = () => {
                                             }
                                             On: {item.published_on}
                                         </Card.Text>
-                                        {/* {renderHTML(item.excerpt.rendered)} */}
                                         <Link to={'/'+item.slug}>
                                             <Button variant="outline-primary">Read More</Button>
                                         </Link>
