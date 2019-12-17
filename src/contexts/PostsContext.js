@@ -48,7 +48,6 @@ const PostsContextProvider = ( props ) => {
         .then( (res) => {
             setPosts(res.data);
             setMeta(res.headers);
-            console.log(res);
         })
     }, [params]);
 

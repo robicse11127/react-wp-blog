@@ -45,33 +45,39 @@ const Navigation = (props) => {
                     </Navbar.Brand>
                     <Nav className="mr-auto">
                         {
-                            menus.top.map( (menu) => {
-                                if(menu.parent_id != 0) {
-                                    childMenus.push(menu)
+                            menus.top.map( (menu, index) => {
+                                if( menu.child.length == 0 ) {
+                                    if( menu.parent.type == 'post_type' ) {
+                                        var url = '/page/'+menu.parent.slug;
+                                    }else {
+                                        var url = menu.parent.url;
+                                    }
+                                    return(
+                                        <React.Fragment key={index}>
+                                            <Link to={url} className="nav-link">{menu.parent.title}</Link>
+                                        </React.Fragment>
+                                    )
                                 }else {
-                                    parentMenus.push(menu)
-                                }
-                            })
-                        }
-                        {
-                            parentMenus.map( (parent, index) => {
-                                return(
-                                    <React.Fragment key={index}>
-                                        {/* <Link to={parent.slug} className="nav-link">{parent.title} */}
-                                        <NavDropdown title={parent.title}>
-                                            {<Link to={'/page/'+parent.slug} className="dropdown-item">{parent.title}</Link>}
-                                            {
-                                                childMenus.map( (child, index) => {
-                                                    if( parent.ID == child.parent_id ) {
+                                    return(
+                                        <React.Fragment key={index}>
+                                            <NavDropdown title={menu.parent.title}>
+                                                <Link to={'/page/'+menu.parent.slug} className="dropdown-item">{menu.parent.title}</Link>
+                                                {
+                                                    menu.child.map( (child, index) => {
+                                                        if( menu.child.type == 'post_type' ) {
+                                                            var url = '/page/'+menu.parent.slug;
+                                                        }else {
+                                                            var url = menu.parent.url;
+                                                        }
                                                         return (
-                                                            <Link key={index} to={'/page/'+child.slug} className="dropdown-item">{child.title}</Link>
+                                                            <Link key={index} to={url} className="dropdown-item">{child.title}</Link>
                                                         )
-                                                    }
-                                                })
-                                            }
-                                        </NavDropdown>
-                                    </React.Fragment>
-                                )
+                                                    })
+                                                }
+                                            </NavDropdown>
+                                        </React.Fragment>
+                                    )
+                                }
                             })
                         }
                     </Nav>

@@ -1,7 +1,9 @@
 import React, {useContext} from 'react';
 import './App.css';
+import dotenv from 'dotenv';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 /**
  * Loaidng Components
  */
@@ -23,6 +25,8 @@ import WidgetsContextProvider from './contexts/WidgetsContext';
 import WidgetContextProvider from './contexts/WidgetsContext';
 import SearchContextProvider from './contexts/SearchContext';
 
+const BaseUrl = process.env.BASE_URL;
+
 function App() {
 	return (
 		<Router>
@@ -36,6 +40,7 @@ function App() {
 									<Switch>
 										<Route exact path="/">
 											<Posts />
+											{BaseUrl}
 										</Route>
 										<Route exact path={"/:slug"}>
 											<Single />
