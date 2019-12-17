@@ -22,7 +22,6 @@ const Navigation = (props) => {
      * Destructure GeneralContext
      */
     const { siteInfo } = useContext(GeneralContext);
-    
 
     /**
      * Destructure MenuContext
@@ -31,10 +30,6 @@ const Navigation = (props) => {
     if( menus == '' ) {
         return menus;
     }
-
-    var parentMenus = [];
-    var childMenus = [];
-
 
     return (
         <React.Fragment>
