@@ -14,7 +14,7 @@ const Author = () => {
     const [authorPosts, setAuthorPosts] = useState([]);
     const [params, setParams] = useState({
         author: id,
-        per_page: 1,
+        per_page: 3,
         page: 1
     });
 
@@ -53,6 +53,19 @@ const Author = () => {
      * Destructuring GeneralContext
      */
     const { siteInfo } = useContext(GeneralContext);
+
+    /**
+     * Pagination Init
+     */
+    let prevBtn = true;
+    let nextBtn = true;
+
+    if( params.page == 1 ) {
+        prevBtn = false;
+    }
+    if( params.page == meta['x-wp-totalpages'] ) {
+        nextBtn = false;
+    }
 
     useEffect( () => {
         axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
@@ -120,8 +133,8 @@ const Author = () => {
                 </Row>
                 <Row className="mt-5">
                     <Col md={12}>
-                        <Button variant="outline-secondary" onClick={prev}>Prev</Button> &nbsp;
-                        <Button variant="outline-secondary" onClick={next}>Next</Button>
+                        <Button variant="outline-secondary" disabled={prevBtn ? '' : 'disabled'} onClick={prev}>Prev</Button> &nbsp;
+                        <Button variant="outline-secondary" disabled={nextBtn ? '' : 'disabled'} onClick={next}>Next</Button>
                     </Col>
                 </Row>
             </Container>

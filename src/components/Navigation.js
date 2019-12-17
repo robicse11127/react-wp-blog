@@ -3,15 +3,26 @@ import { Link, useHistory } from 'react-router-dom';
 import { Navbar, NavDropdown, Nav, Button, Form, FormControl, Container } from 'react-bootstrap';
 import { GeneralContext } from '../contexts/GeneralContext';
 import { MenuContext } from '../contexts/MenuContext';
+import { SearchContext } from '../contexts/SearchContext';
 
 const Navigation = (props) => {
     let history = useHistory();
 
     /**
+     * Init Search Keyword State
+     */
+    const [keyword, setKeyword] = useState('');
+
+    /**
+     * Destructuring SearchContext
+     */
+    const { handleSearch } = useContext( SearchContext );
+
+    /**
      * Destructure GeneralContext
      */
     const { siteInfo } = useContext(GeneralContext);
-    const [keyword, setKeyword] = useState('');
+    
 
     /**
      * Destructure MenuContext
@@ -23,14 +34,6 @@ const Navigation = (props) => {
 
     var parentMenus = [];
     var childMenus = [];
-
-    /**
-     * Search
-     */
-    const handleSearch = (e) => {
-        e.preventDefault();
-        history.push('/search/'+keyword)
-    }
 
 
     return (
@@ -72,7 +75,7 @@ const Navigation = (props) => {
                             })
                         }
                     </Nav>
-                    <Form inline onSubmit={handleSearch}>
+                    <Form inline onSubmit={ (e) => handleSearch(e, keyword)}>
                         <FormControl type="text" placeholder="Enter Keywords" className="mr-sm-2" value={keyword} onChange={ (e) => setKeyword(e.target.value) }  />
                         <input type="submit" className="btn btn-info" value="Search" />
                     </Form>

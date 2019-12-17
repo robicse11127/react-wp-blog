@@ -48,6 +48,7 @@ const PostsContextProvider = ( props ) => {
         .then( (res) => {
             setPosts(res.data);
             setMeta(res.headers);
+            console.log(res);
         })
     }, [params]);
 
@@ -55,7 +56,7 @@ const PostsContextProvider = ( props ) => {
      * Return Provider
      */
     return (  
-        <PostsContext.Provider value={{posts, meta, next, prev}}>
+        <PostsContext.Provider value={{posts, meta, next, prev, params}}>
             { props.children }
         </PostsContext.Provider>
     );

@@ -21,6 +21,7 @@ import MenuContextProvider from './contexts/MenuContext';
 import PostsContextProvider from './contexts/PostsContext';
 import WidgetsContextProvider from './contexts/WidgetsContext';
 import WidgetContextProvider from './contexts/WidgetsContext';
+import SearchContextProvider from './contexts/SearchContext';
 
 function App() {
 	return (
@@ -28,32 +29,34 @@ function App() {
 			<div className="App">
 				<GeneralContextProvider>
 					<MenuContextProvider>
-						<WidgetContextProvider>
-							<Navigation />
-							<PostsContextProvider>
-								<Switch>
-									<Route exact path="/">
-										<Posts />
-									</Route>
-									<Route exact path={"/:slug"}>
-										<Single />
-									</Route>
-									<Route exact path="/category/:id/posts">
-										<Category />
-									</Route>
-									<Route exact path="/author/:id/posts">
-										<Author />
-									</Route>
-									<Route exact path="/page/:slug">
-										<Page />
-									</Route>
-									<Route exact path="/search/:keyword">
-										<Search />
-									</Route>
-								</Switch>
-							</PostsContextProvider>
-							<Footer />
-						</WidgetContextProvider>
+						<SearchContextProvider>
+							<WidgetContextProvider>
+								<Navigation />
+								<PostsContextProvider>
+									<Switch>
+										<Route exact path="/">
+											<Posts />
+										</Route>
+										<Route exact path={"/:slug"}>
+											<Single />
+										</Route>
+										<Route exact path="/category/:id/posts">
+											<Category />
+										</Route>
+										<Route exact path="/author/:id/posts">
+											<Author />
+										</Route>
+										<Route exact path="/page/:slug">
+											<Page />
+										</Route>
+										<Route exact path="/search/:keyword">
+											<Search />
+										</Route>
+									</Switch>
+								</PostsContextProvider>
+								<Footer />
+							</WidgetContextProvider>
+						</SearchContextProvider>
 					</MenuContextProvider>
 				</GeneralContextProvider>
 			</div>

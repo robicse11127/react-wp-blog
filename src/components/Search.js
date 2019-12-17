@@ -1,63 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Row, Col, Jumbotron, Container, Card, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import Axios from 'axios';
+
+import { SearchContext } from '../contexts/SearchContext';
 
 const Search = () => {
+
     let { keyword } = useParams();
 
-    const [result, setResult] = useState([]);
-
     /**
-     * Init Params State
+     * Destructuring SearchContext
      */
-    const [params,setParams] = useState({
-        subtype: 'post',
-        search: keyword,
-        per_page: 3,
-        page: 1
-    });
+    const { searchPosts, meta, params, prev, next } = useContext(SearchContext);
 
-    const [meta, setMeta] = useState([]);
-
-    /**
-     * On Post Next Navigation
-     */
-    const next = () => {
-        if( params.page < meta['x-wp-totalpages'] ) {
-            setParams({
-                subtype: 'post',
-                search: keyword,
-                per_page: params.per_page, 
-                page: parseInt(params.page, 10) + 1
-            })
-        }
+    if( searchPosts == '' ) {
+        return searchPosts;
     }
 
     /**
-     * On Post Prev Navigation
+     * Pagination Init
      */
-    const prev = () => {
-        if( params.page > 1 ) {
-            setParams({
-                subtype: 'post',
-                search: keyword,
-                per_page: params.per_page, 
-                page: parseInt(params.page, 10) - 1
-            })
-        }
+    let prevBtn = true;
+    let nextBtn = true;
+
+    if( params.page == 1 ) {
+        prevBtn = false;
     }
-
-    useEffect( ()  => {
-        Axios.get(`http://localhost/wp-react/wp-json/wp/v2/search`, {
-            params: params
-        })
-        .then( (res) => {
-            setResult(res.data)
-            setMeta(res.headers);
-        })
-    }, [keyword]);
-
+    if( params.page == meta['x-wp-totalpages'] ) {
+        nextBtn = false;
+    }
 
     return (
         <React.Fragment>
@@ -74,7 +45,7 @@ const Search = () => {
                 <Row>
                     <Col md={12}>
                         {
-                            result.map( (item) => {
+                            searchPosts.map( (item) => {
                                 return(
                                     <Card className="mb-2" key={item.id}>
                                         <Card.Body>
@@ -90,8 +61,8 @@ const Search = () => {
             <Container>
                 <Row className="mb-5 mt-3">
                     <Col md={12}>
-                        <Button variant="outline-secondary" onClick={prev}>Prev</Button> &nbsp;
-                        <Button variant="outline-secondary" onClick={next}>Next</Button>
+                        <Button variant="outline-secondary" disabled={prevBtn ? '' : 'disabled'} onClick={ () => prev(keyword)}>Prev</Button> &nbsp;
+                        <Button variant="outline-secondary" disabled={nextBtn ? '' : 'disabled'} onClick={ () => next(keyword)}>Next</Button>
                     </Col>
                 </Row>
             </Container>
