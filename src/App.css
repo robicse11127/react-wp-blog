@@ -1,3 +1,95 @@
+/* 
+===================================================================
+- App Style Index
+------------------------------------------------------------
+- General
+- Post Card
+- Page Header
+- Page Content
+- Nothing Found
+- Footer
+===================================================================
+*/
+/* General */
+html, body, a, p, input, select, button, textarea {
+	font-family: 'Raleway', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'PT Sans', sans-serif;
+}
+a {
+	color: #17a2b8;
+}
+img {
+	max-width: 100%;
+}
+/* Post Card */
+.card {
+	margin-bottom: 30px;
+}
+.card-title h4 a {
+	font-size: 20px;
+	line-height: 1;
+	font-weight: 600;
+	text-decoration: none;
+	color: #17a2b8;
+	transition: all 0.3s ease-in-out;
+}
+.card-title h4 a:hover {
+	color: #343a40;
+}
+.card-text {
+	font-size: 14px;
+}
+.card-text a.term-link,
+a.author-link {
+	color: #17a2b8;
+}
+
+/* Page Header */
+.page-header {
+	padding: 60px 0px;
+	background: #e9ecef;
+}
+.page-header .meta-links, 
+.page-header .meta-links a {
+	color: #17a2b8;
+	font-weight: 600;
+}
+.page-header .meta-links {
+	color: #343a40;
+}
+
+/* Page Content */
+.page-content {
+	font-size: 20px;
+	padding: 60px 60px 60px;
+	background-color: #fff;
+	margin-top: -200px;
+	border-radius: 10px;
+}
+.disqus-comments {
+	padding: 30px  0px 60px 0px;
+}
+
+/* Footer */
+.footer-widget-area {
+	background: #f9f9f9;
+	padding: 60px 0px;
+}
+.footer-widget-area a {
+	color: #3d3d3d;
+	font-weight: 500;
+}
+.footer-widget-area a.nav-link {
+	border-bottom: 1px solid rgba(0,0,0,0.09);
+}
+.footer-widget-area a.nav-link:last-child {
+	border-bottom: 0;
+}
+.footer-widget-area .widget-title {
+	margin-bottom: 20px;
+}
 .copyright-text {
 	margin: 0;
 	color: #fff;
@@ -5,9 +97,20 @@
 .featured-image {
 	display: block;
 	width: 100%;
-	height: 400px;
+	height: 600px;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center center;
+	background-position: top center;
 	margin-bottom: 50px;
+}
+.copyright-sidebar .widget-title {
+	margin-bottom: 0;
+}
+
+/* Nothing Found */
+.nothing-found {
+	padding: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

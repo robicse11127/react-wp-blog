@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Container, Jumbotron, Row, Col } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
+import NotFound from '../components/NotFound';
 
 const Page = () => {
 
@@ -21,13 +22,19 @@ const Page = () => {
         })
     },[slug]);
 
+    if( page == '' ) {
+        return(
+            <NotFound />
+        )
+    }
+
     return (
         <React.Fragment>
             {
                 page.map( (item, index) => {
                     return(
                         <React.Fragment key={index}>
-                            <Jumbotron>
+                            <div className="page-header">
                                 <Container>
                                     <Row>
                                         <Col md={12}>
@@ -35,18 +42,16 @@ const Page = () => {
                                         </Col>
                                     </Row>
                                 </Container>
-                            </Jumbotron>
+                            </div>
                             <Container fluid>
                                 <Row>
-                                <div className="featured-image" style={{backgroundImage: `url(${item.featured_image_src.full})`}}>
-                                    
-                                </div>
+                                    <div className="featured-image" style={{backgroundImage: `url(${item.featured_image_src.full})`}}></div>
                                 </Row>
                             </Container>
                             <Container>
                                 <Row>
-                                    <Col md={{span: 8, offset: 2}}>
-                                        {renderHTML(item.content.rendered)}
+                                    <Col md={12}>
+                                        <div className="page-content">{renderHTML(item.content.rendered)}</div>
                                     </Col>
                                 </Row>
                             </Container>

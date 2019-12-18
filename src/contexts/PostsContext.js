@@ -12,7 +12,7 @@ const PostsContextProvider = ( props ) => {
      * Init Params State
      */
     const [params,setParams] = useState({
-        per_page: 3,
+        per_page: 6,
         page: 1
     });
     /**

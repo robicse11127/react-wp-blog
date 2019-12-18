@@ -5,7 +5,7 @@ const MediaAudioWidget = (props) => {
     return (
         <Row>
             <Col md={12}>
-                <h4>{props.widget.instance.title}</h4>
+                <h4 className="widget-title">{props.widget.instance.title}</h4>
             </Col>
             <Col md={12}>
                 <audio controls>

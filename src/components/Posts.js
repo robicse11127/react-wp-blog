@@ -54,9 +54,9 @@ const Posts = () => {
                                     <Card.Img variant="top" src={item.featured_image_src.medium} />
                                     <Card.Body>
                                         <Card.Title>
-                                            <Link to={'/'+item.slug}>
-                                                {item.title.rendered}
-                                            </Link>
+                                            <h4>
+                                                <Link to={'/'+item.slug}>{item.title.rendered}</Link>
+                                            </h4>
                                         </Card.Title>
                                         <Card.Text>
                                             In: {
@@ -65,19 +65,18 @@ const Posts = () => {
                                                  */
                                                 item.post_terms.map((term) => {
                                                     return(
-                                                        <Link to={'/category/'+term.id+'/posts'} key={term.id}>{term.name}, </Link>
+                                                        <Link to={'/category/'+term.id+'/posts'} key={term.id} className="term-link">{term.name}, </Link>
                                                     )
                                                 })
                                             }
                                             On: {item.published_on}
                                         </Card.Text>
                                         <Link to={'/'+item.slug}>
-                                            <Button variant="outline-primary">Read More</Button>
+                                            <Button variant="outline-info">Read More</Button>
                                         </Link>
                                     </Card.Body> 
                                     <Card.Footer>
-                                        <small className="text-muted">By:<Link to={'/author/'+item.author+'/posts'}> {item.author_details.user_nicename}</Link>
-                                        </small>
+                                        By: <Link to={'/author/'+item.author+'/posts'} className="author-link">{item.author_details.user_nicename}</Link>
                                     </Card.Footer>
                                 </Card>
                             </Col>
@@ -85,10 +84,10 @@ const Posts = () => {
                     })
                 }
                 </Row>
-                <Row className="mt-5">
+                <Row className="mt-3">
                     <Col md={12}>
-                        <Button variant="outline-secondary" disabled={prevBtn ? '' : 'disabled'} onClick={prev}>Prev</Button> &nbsp;
-                        <Button variant="outline-secondary" disabled={nextBtn ? '' : 'disabled'} onClick={next}>Next</Button>
+                        <Button variant="outline-info" disabled={prevBtn ? '' : 'disabled'} onClick={prev}>Prev</Button> &nbsp;
+                        <Button variant="outline-info" disabled={nextBtn ? '' : 'disabled'} onClick={next}>Next</Button>
                     </Col>
                 </Row>
             </Container>

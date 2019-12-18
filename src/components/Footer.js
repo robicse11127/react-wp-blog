@@ -58,18 +58,20 @@ const Footer = () => {
             </div>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand>
-                        <Link to="/" className="navbar-brand">
-                            {
-                                widgets['copyright-sidebar-1'].map( (widget) => {
-                                    return (
-                                        <Widgets widget={widget} />
-                                    )
-                                })
-                            }
-                        </Link>
-                    </Navbar.Brand>
-                    <div className="copyright-sidebar-2">
+                    <div className="copyright-sidebar">
+                        <Navbar.Brand>
+                            <Link to="/" className="navbar-brand">
+                                {
+                                    widgets['copyright-sidebar-1'].map( (widget) => {
+                                        return (
+                                            <Widgets widget={widget} />
+                                        )
+                                    })
+                                }
+                            </Link>
+                        </Navbar.Brand>
+                    </div>
+                    <div className="copyright-sidebar">
                     {
                         widgets['copyright-sidebar-2'].map( (widget) => {
                             return (
