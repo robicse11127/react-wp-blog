@@ -66,7 +66,7 @@ function App() {
 				</GeneralContextProvider>
 			</div>
 		</Router>
-  	);
+  );
 }
 
 export default App;
