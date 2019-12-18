@@ -9,7 +9,7 @@ const NavMenuWidget = (props) => {
                 <h4>{props.widget.instance.title}</h4>
             </Col>
             <Col md={12}>
-                <Nav defaultActiveKey="/home" className="flex-column">
+                <Nav className="flex-column">
                     {
                         props.widget.value.map((item) => {
                             if(item.type == 'custom') {

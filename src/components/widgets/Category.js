@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const CategoryWidget = (props) => {
@@ -9,17 +9,15 @@ const CategoryWidget = (props) => {
                 <h4>{props.widget.instance.title}</h4>
             </Col>
             <Col md={12}>
-                <ListGroup>
+                <Nav className="flex-column">
                     {
                         props.widget.value.map((item) => {
                             return(
-                                <ListGroup.Item>
-                                    <Link to={'/category/'+item.term.term_id+'/posts'}>{item.term.name}</Link>
-                                </ListGroup.Item>
+                                <Link to={'/category/'+item.term.term_id+'/posts'} className="nav-link">{item.term.name}</Link>
                             )
                         })
                     }
-                </ListGroup>
+                </Nav>
             </Col>
         </Row>
     );

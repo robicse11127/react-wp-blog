@@ -27,13 +27,15 @@ const Page = () => {
                 page.map( (item, index) => {
                     return(
                         <React.Fragment key={index}>
-                            <Container>
-                                <Row>
-                                    <Col md={12}>
-                                        <h1>{item.title.rendered}</h1>
-                                    </Col>
-                                </Row>
-                            </Container>
+                            <Jumbotron>
+                                <Container>
+                                    <Row>
+                                        <Col md={12}>
+                                            <h1>{item.title.rendered}</h1>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            </Jumbotron>
                             <Container fluid>
                                 <Row>
                                 <div className="featured-image" style={{backgroundImage: `url(${item.featured_image_src.full})`}}>
