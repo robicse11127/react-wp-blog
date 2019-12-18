@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const NavMenuWidget = (props) => {
@@ -9,25 +9,21 @@ const NavMenuWidget = (props) => {
                 <h4>{props.widget.instance.title}</h4>
             </Col>
             <Col md={12}>
-                <ListGroup>
+                <Nav defaultActiveKey="/home" className="flex-column">
                     {
                         props.widget.value.map((item) => {
                             if(item.type == 'custom') {
                                 return(
-                                    <ListGroup.Item>
-                                        <Link to={'/'+ item.url}>{item.title}</Link>
-                                    </ListGroup.Item>
+                                    <Link to={'/'+ item.url} className="nav-link">{item.title}</Link>
                                 )
                             }else {
                                 return(
-                                    <ListGroup.Item>
-                                        <Link to={'/page/'+ item.slug}>{item.title}</Link>
-                                    </ListGroup.Item>
+                                    <Link to={'/page/'+ item.slug} className="nav-link">{item.title}</Link>
                                 )
                             }
                         })
                     }
-                </ListGroup>
+                </Nav>
             </Col>
         </Row>
     );
