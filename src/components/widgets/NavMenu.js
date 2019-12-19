@@ -11,14 +11,14 @@ const NavMenuWidget = (props) => {
             <Col md={12}>
                 <Nav className="flex-column">
                     {
-                        props.widget.value.map((item) => {
+                        props.widget.value.map((item, index) => {
                             if(item.type == 'custom') {
                                 return(
-                                    <Link to={'/'+ item.url} className="nav-link">{item.title}</Link>
+                                    <Link to={'/'+ item.url} className="nav-link" key={index}>{item.title}</Link>
                                 )
                             }else {
                                 return(
-                                    <Link to={'/page/'+ item.slug} className="nav-link">{item.title}</Link>
+                                    <Link to={'/page/'+ item.slug} className="nav-link" key={index}>{item.title}</Link>
                                 )
                             }
                         })

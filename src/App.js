@@ -15,6 +15,8 @@ import Author from './components/Author';
 import Page from './components/Page';
 import Footer from './components/Footer';
 import Search from './components/Search';
+
+import Login from './components/auth/Login';
 /**
  * Importing Contexts
  */
@@ -56,6 +58,9 @@ function App() {
 										</Route>
 										<Route exact path="/search/:keyword">
 											<Search />
+										</Route>
+										<Route exact path="/app/login">
+											<Login />
 										</Route>
 									</Switch>
 								</PostsContextProvider>

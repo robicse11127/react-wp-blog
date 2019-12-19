@@ -11,9 +11,9 @@ const CategoryWidget = (props) => {
             <Col md={12}>
                 <Nav className="flex-column">
                     {
-                        props.widget.value.map((item) => {
+                        props.widget.value.map((item, index) => {
                             return(
-                                <Link to={'/category/'+item.term.term_id+'/posts'} className="nav-link">{item.term.name}</Link>
+                                <Link to={'/category/'+item.term.term_id+'/posts'} className="nav-link" key={index}>{item.term.name}</Link>
                             )
                         })
                     }

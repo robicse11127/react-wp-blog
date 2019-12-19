@@ -19,36 +19,36 @@ const Footer = () => {
                     <Row>
                         <Col md={3}>
                         {
-                            widgets['footer-sidebar-1'].map( (widget) => {
+                            widgets['footer-sidebar-1'].map( (widget, index) => {
                                 return (
-                                    <Widgets widget={widget} />
+                                    <Widgets widget={widget} key={index} />
                                 )
                             })
                         }
                         </Col>
                         <Col md={3}>
                         {
-                            widgets['footer-sidebar-2'].map( (widget) => {
+                            widgets['footer-sidebar-2'].map( (widget, index) => {
                                 return (
-                                    <Widgets widget={widget} />
+                                    <Widgets widget={widget} key={index} />
                                 )
                             })
                         }
                         </Col>
                         <Col md={3}>
                         {
-                            widgets['footer-sidebar-3'].map( (widget) => {
+                            widgets['footer-sidebar-3'].map( (widget, index) => {
                                 return (
-                                    <Widgets widget={widget} />
+                                    <Widgets widget={widget} key={index} />
                                 )
                             })
                         }
                         </Col>
                         <Col md={3}>
                         {
-                            widgets['footer-sidebar-4'].map( (widget) => {
+                            widgets['footer-sidebar-4'].map( (widget, index) => {
                                 return (
-                                    <Widgets widget={widget} />
+                                    <Widgets widget={widget} key={index} />
                                 )
                             })
                         }
@@ -62,9 +62,9 @@ const Footer = () => {
                         <Navbar.Brand>
                             <Link to="/" className="navbar-brand">
                                 {
-                                    widgets['copyright-sidebar-1'].map( (widget) => {
+                                    widgets['copyright-sidebar-1'].map( (widget, index) => {
                                         return (
-                                            <Widgets widget={widget} />
+                                            <Widgets widget={widget} key={index} />
                                         )
                                     })
                                 }
@@ -73,9 +73,9 @@ const Footer = () => {
                     </div>
                     <div className="copyright-sidebar">
                     {
-                        widgets['copyright-sidebar-2'].map( (widget) => {
+                        widgets['copyright-sidebar-2'].map( (widget, index) => {
                             return (
-                                <Widgets widget={widget} />
+                                <Widgets widget={widget} key={index} />
                             )
                         })
                     }

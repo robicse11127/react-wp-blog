@@ -13,7 +13,7 @@ const Search = () => {
      */
     const { searchPosts, meta, params, prev, next } = useContext(SearchContext);
 
-    if( searchPosts == '' ) {
+    if( searchPosts === '' ) {
         return searchPosts;
     }
 
@@ -23,10 +23,10 @@ const Search = () => {
     let prevBtn = true;
     let nextBtn = true;
 
-    if( params.page == 1 ) {
+    if( params.page === 1 ) {
         prevBtn = false;
     }
-    if( params.page == meta['x-wp-totalpages'] ) {
+    if( params.page === meta['x-wp-totalpages'] ) {
         nextBtn = false;
     }
 

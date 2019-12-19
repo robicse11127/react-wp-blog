@@ -43,11 +43,14 @@ const Page = () => {
                                     </Row>
                                 </Container>
                             </div>
-                            <Container fluid>
-                                <Row>
-                                    <div className="featured-image" style={{backgroundImage: `url(${item.featured_image_src.full})`}}></div>
-                                </Row>
-                            </Container>
+                            {item.featured_image_src.full ? (
+                                <Container fluid>
+                                    <Row>
+                                        <div className="featured-image" style={{backgroundImage: `url(${item.featured_image_src.full})`}}></div>
+                                    </Row>
+                                </Container>
+                            ) : ( <p>No Image</p>)}
+                            
                             <Container>
                                 <Row>
                                     <Col md={12}>
