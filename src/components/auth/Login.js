@@ -29,7 +29,6 @@ class Login extends React.Component {
 
         Axios.post(`http://localhost/wp-react/wp-json/jwt-auth/v1/token`, loginData)
         .then( (res) => {
-            console.log(res.data)
             if( 'undefined' === res.data.token ) {
                 this.setState({error: res.data.message, isLoading: false});
             }else {

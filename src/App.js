@@ -17,6 +17,8 @@ import Footer from './components/Footer';
 import Search from './components/Search';
 
 import Login from './components/auth/Login';
+import Logout from './components/auth/Logout';
+import Signup from './components/auth/Signup';
 /**
  * Importing Contexts
  */
@@ -61,6 +63,12 @@ function App() {
 										</Route>
 										<Route exact path="/app/login">
 											<Login />
+										</Route>
+										<Route exact path="/app/logout">
+											<Logout />
+										</Route>
+										<Route exact path="/app/signup">
+											<Signup />
 										</Route>
 									</Switch>
 								</PostsContextProvider>

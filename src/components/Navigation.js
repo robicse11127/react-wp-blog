@@ -5,6 +5,9 @@ import { GeneralContext } from '../contexts/GeneralContext';
 import { MenuContext } from '../contexts/MenuContext';
 import { SearchContext } from '../contexts/SearchContext';
 
+import AuthMenu from '../components/auth/AuthMenu';
+import LogoutMenu from '../components/auth/LogoutMenu';
+
 const Navigation = (props) => {
     let history = useHistory();
 
@@ -29,6 +32,16 @@ const Navigation = (props) => {
     const { menus } = useContext(MenuContext);
     if( menus == '' ) {
         return menus;
+    }
+
+
+    const getAuthToken = localStorage.getItem('token');
+    let authMenu;
+
+    if(getAuthToken) {
+        authMenu = <LogoutMenu />
+    }else {
+        authMenu = <AuthMenu />
     }
 
     return (
@@ -76,11 +89,7 @@ const Navigation = (props) => {
                             })
                         }
                     </Nav>
-                    
-                    <Nav>
-                        <Link to={'/app/login'} className="nav-link">Login</Link>
-                        <Link to={'/app/signup'} className="nav-link">SignUp</Link>
-                    </Nav>
+                    {authMenu}
                     <Form inline onSubmit={ (e) => handleSearch(e, keyword)}>
                         <FormControl type="text" placeholder="Enter Keywords" className="mr-sm-2" value={keyword} onChange={ (e) => setKeyword(e.target.value) }  />
                         <input type="submit" className="btn btn-info" value="Search" />
