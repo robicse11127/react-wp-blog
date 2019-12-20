@@ -64,7 +64,7 @@ class Signup extends React.Component {
             }
         })
         .catch( (err) => {
-            console.log(err.response.data)
+            this.setState( { error: err.response.data, isLoading: false } )
         })
     }
 
@@ -80,7 +80,7 @@ class Signup extends React.Component {
                 <Container>
                     <Row>
                         <Col md={{span: 4, offset: 4}}>
-                        <Card className="mt-5">
+                            <Card className="mt-5">
                                 <Card.Header><h4>Signup</h4></Card.Header>
                                 <Card.Body>
                                     <Form onSubmit={this.handleSubmit}>

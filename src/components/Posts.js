@@ -3,6 +3,7 @@ import { PostsContext } from '../contexts/PostsContext';
 import { GeneralContext } from '../contexts/GeneralContext';
 import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa';
 
 const Posts = () => {
     /**
@@ -76,7 +77,8 @@ const Posts = () => {
                                         </Link>
                                     </Card.Body> 
                                     <Card.Footer>
-                                        By: <Link to={'/author/'+item.author+'/posts'} className="author-link">{item.author_details.user_nicename}</Link>
+                                        By: <Link to={'/author/'+item.author+'/posts'} className="author-link">{item.author_details.user_nicename}</Link> &nbsp;
+                                        <FaHeart style={{color: 'red'}} /> 12
                                     </Card.Footer>
                                 </Card>
                             </Col>
