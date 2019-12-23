@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { PostsContext } from '../contexts/PostsContext';
 import { GeneralContext } from '../contexts/GeneralContext';
 import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
@@ -9,14 +9,14 @@ const Posts = () => {
     /**
      * Destructuring PostsContext
      */
-    const {posts, params, meta, next, prev} = useContext(PostsContext);
+    const {posts, params, meta, next, prev, undate_post_loved} = useContext(PostsContext);
 
     /**
      * Destructuring GeneralContext
      */
     const { siteInfo } = useContext(GeneralContext);
 
-    if( posts == '' ) {
+    if( posts === '' ) {
         return posts;
     }
 
@@ -26,10 +26,10 @@ const Posts = () => {
     let prevBtn = true;
     let nextBtn = true;
 
-    if( params.page == 1 ) {
+    if( params.page === 1 ) {
         prevBtn = false;
     }
-    if( params.page == meta['x-wp-totalpages'] ) {
+    if( params.page === meta['x-wp-totalpages'] ) {
         nextBtn = false;
     }
 
@@ -78,7 +78,7 @@ const Posts = () => {
                                     </Card.Body> 
                                     <Card.Footer>
                                         By: <Link to={'/author/'+item.author+'/posts'} className="author-link">{item.author_details.user_nicename}</Link> &nbsp;
-                                        <FaHeart style={{color: 'red'}} /> 12
+                                        <a href="" className="post-loved" data-post-id={item.id} data-love={item.metaboxes._post_loved ? item.metaboxes._post_loved : 0} onClick={ (e) => undate_post_loved(e) }><FaHeart style={{color: 'red'}} /></a> {item.metaboxes._post_loved ? item.metaboxes._post_loved : 0}
                                     </Card.Footer>
                                 </Card>
                             </Col>

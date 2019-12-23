@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Navbar, Nav, Button, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Container, Row, Col } from 'react-bootstrap';
 import { WidgetsContext } from '../contexts/WidgetsContext';
 import { Link } from 'react-router-dom';
 import Widgets from './widgets/Widgets';

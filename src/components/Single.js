@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
-import { Container, Jumbotron, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import ReactDisqusComments from 'react-disqus-comments';
 import NotFound from '../components/NotFound';
@@ -25,7 +25,7 @@ const Single = () => {
         })
     },[slug]);
 
-    if( post == '' ) {
+    if( post === '' ) {
         return(
             <NotFound />
         )

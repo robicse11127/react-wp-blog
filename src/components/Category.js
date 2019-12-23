@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Jumbotron, Row, Col, Card, Button } from 'react-bootstrap';
-import renderHTML from 'react-render-html';
-import { GeneralContext } from '../contexts/GeneralContext';
 
 import CategoryPageHeader from '../partials/CategoryPageHeader';
 
@@ -55,17 +53,12 @@ const Category = () => {
     let prevBtn = true;
     let nextBtn = true;
 
-    if( params.page == 1 ) {
+    if( params.page === 1 ) {
         prevBtn = false;
     }
-    if( params.page == meta['x-wp-totalpages'] ) {
+    if( params.page === meta['x-wp-totalpages'] ) {
         nextBtn = false;
     }
-
-    /**
-     * Destructuring GeneralContext
-     */
-    const { siteInfo } = useContext(GeneralContext);
 
     useEffect( () => {
         axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
@@ -115,7 +108,6 @@ const Category = () => {
                                             }
                                             On: {item.published_on}
                                         </Card.Text>
-                                        {/* {renderHTML(item.excerpt.rendered)} */}
                                         <Link to={'/'+item.slug}>
                                             <Button variant="outline-primary">Read More</Button>
                                         </Link>

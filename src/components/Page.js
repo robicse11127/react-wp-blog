@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Container, Jumbotron, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import NotFound from '../components/NotFound';
 
@@ -22,7 +22,7 @@ const Page = () => {
         })
     },[slug]);
 
-    if( page == '' ) {
+    if( page === '' ) {
         return(
             <NotFound />
         )

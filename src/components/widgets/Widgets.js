@@ -18,7 +18,7 @@ import CustomHtmlWidget from './CustomHtml';
 const Widgets = (props) => {
     const { widgets } = useContext(WidgetsContext);
 
-    if(widgets == '') {
+    if(widgets === '') {
         return widgets;
     }
 
@@ -26,50 +26,50 @@ const Widgets = (props) => {
         <React.Fragment>
             { 
                 ( () => {
-                    if( props.widget.type == 'recent-posts' ) {
+                    if( props.widget.type === 'recent-posts' ) {
                         return(
                             <RecentPostsWidget widget={props.widget} />
                         )
-                    }else if( props.widget.type == 'search' ) {
+                    }else if( props.widget.type === 'search' ) {
                         return(
                             <SearchWidget widget={props.widget}/>
                         )
-                    }else if(props.widget.type == 'recent-comments') {
+                    }else if(props.widget.type === 'recent-comments') {
                         return(
                             <RecentCommnetsWidget widget={props.widget} />
                         )
-                    }else if(props.widget.type == 'nav_menu') {
+                    }else if(props.widget.type === 'nav_menu') {
                         return(
                             <NavMenuWidget widget={props.widget} />
                         )
-                    }else if(props.widget.type == 'media_image') {
+                    }else if(props.widget.type === 'media_image') {
                         return(
                             <MediaImageWidget widget={props.widget} />
                         )
-                    }else if(props.widget.type == 'media_audio') {
+                    }else if(props.widget.type === 'media_audio') {
                         return(
                             <MediaAudioWidget widget={props.widget} />
                         )
-                    }else if(props.widget.type == 'calendar') {
+                    }else if(props.widget.type === 'calendar') {
                         return(
                             <CalendarWidget widget={props.widget} />
                         );
-                    }else if(props.widget.type == 'pages') {
+                    }else if(props.widget.type === 'pages') {
                         return(
                             <PagesWidget widget={props.widget} />
                         );
                     }
-                    else if(props.widget.type == 'text') {
+                    else if(props.widget.type === 'text') {
                         return(
                             <TextWidget widget={props.widget} />
                         );
                     }
-                    else if(props.widget.type == 'categories') {
+                    else if(props.widget.type === 'categories') {
                         return(
                             <CategoryWidget widget={props.widget} />
                         );
                     }
-                    else if(props.widget.type == 'custom_html') {
+                    else if(props.widget.type === 'custom_html') {
                         return(
                             <CustomHtmlWidget widget={props.widget} />
                         );

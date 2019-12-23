@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Jumbotron } from 'react-bootstrap';
 import Axios from 'axios';
 
 const AuthorPageHeader = (props) => {
