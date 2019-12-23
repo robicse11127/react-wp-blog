@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import ReactDisqusComments from 'react-disqus-comments';
 import NotFound from '../components/NotFound';
+import config from '../Config';
 
 const Single = () => {
 
@@ -15,7 +16,7 @@ const Single = () => {
     const disqusUrl = 'http://localhost:3000/'+slug;
 
     useEffect( () => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
+        axios.get(`${config.app_url}/posts`, {
             params: {
                 slug: slug
             }

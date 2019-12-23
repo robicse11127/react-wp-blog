@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import NotFound from '../components/NotFound';
+import config from '../Config';
 
 const Page = () => {
 
@@ -12,7 +13,7 @@ const Page = () => {
     const [page, setPage] = useState([]);
 
     useEffect( () => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/pages`, {
+        axios.get(`${config.app_url}/pages`, {
             params: {
                 slug: slug
             }

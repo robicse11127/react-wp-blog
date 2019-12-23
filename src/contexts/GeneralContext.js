@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
+import config from '../Config';
 
 export const GeneralContext = createContext();
 
@@ -11,7 +12,7 @@ const GeneralContextProvider = ( props ) => {
     const[siteInfo, setSiteInfo] = useState('');
 
     useEffect( () => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/general`)
+        axios.get(`${config.app_url}/general`)
         .then( (res) => {
             setSiteInfo(res.data)
         })

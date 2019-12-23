@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import config from '../Config';
 import Axios from 'axios';
 
 const CategoryPageHeader = (props) => {
@@ -6,7 +7,7 @@ const CategoryPageHeader = (props) => {
     const [category, setCategory] = useState('');
 
     useEffect(() => {
-        Axios.get(`http://localhost/wp-react/wp-json/wp/v2/categories/`+props.id)
+        Axios.get(`${config.app_url}/categories/`+props.id)
         .then( (res) => {
             setCategory( res.data )
         })

@@ -1,9 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../Config';
 
 export const PostsContext = createContext();
 
 const PostsContextProvider = ( props ) => {
+
+    console.log(config.app_url);
     /**
      * Init Post State
      */
@@ -52,7 +55,7 @@ const PostsContextProvider = ( props ) => {
 
         let token = localStorage.getItem('token');
         if(token) {
-            axios.post(`http://localhost/wp-react/wp-json/wp/v2/posts/${postID}`, metadata, {
+            axios.post(`${config.app_url}/posts/${postID}`, metadata, {
                 headers: {
                     'Authorization' : `Bearer ${token}`
                 }
@@ -78,7 +81,7 @@ const PostsContextProvider = ( props ) => {
      * Trigger Hook to fetch data
      */
     useEffect( ()  => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
+        axios.get(`${config.app_url}/posts`, {
             params: params
         })
         .then( (res) => {

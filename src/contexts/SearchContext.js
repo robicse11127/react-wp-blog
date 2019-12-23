@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import config from '../Config';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -75,7 +76,7 @@ const SearchContextProvider = (props) => {
      * Trigger hook to fetch data
      */
     useEffect( () => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/search`, {
+        axios.get(`${config.app_url}/search`, {
             params: params
         })
         .then( (res) => {

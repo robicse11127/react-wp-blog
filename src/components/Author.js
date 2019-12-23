@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Jumbotron, Row, Col, Card, Button } from 'react-bootstrap';
+import config from '../Config';
 
 import AuthorPageHeader from '../partials/AuthorPageHeader';
 
@@ -61,7 +62,7 @@ const Author = () => {
     }
 
     useEffect( () => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
+        axios.get(`${config.app_url}/posts`, {
             params: params
         })
         .then( (res) => {
