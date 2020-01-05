@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { Navbar, NavDropdown, Nav, Button, Form, FormControl, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Navbar, NavDropdown, Nav, Form, FormControl, Container } from 'react-bootstrap';
 import { GeneralContext } from '../contexts/GeneralContext';
 import { MenuContext } from '../contexts/MenuContext';
 import { SearchContext } from '../contexts/SearchContext';
@@ -9,7 +9,7 @@ import AuthMenu from '../components/auth/AuthMenu';
 import LogoutMenu from '../components/auth/LogoutMenu';
 
 const Navigation = (props) => {
-    let history = useHistory();
+    let url;
 
     /**
      * Init Search Keyword State
@@ -30,7 +30,7 @@ const Navigation = (props) => {
      * Destructure MenuContext
      */
     const { menus } = useContext(MenuContext);
-    if( menus == '' ) {
+    if( menus === '' ) {
         return menus;
     }
 
@@ -54,11 +54,11 @@ const Navigation = (props) => {
                     <Nav className="mr-auto">
                         {
                             menus.top.map( (menu, index) => {
-                                if( menu.child.length == 0 ) {
-                                    if( menu.parent.type == 'post_type' ) {
-                                        var url = '/page/'+menu.parent.slug;
+                                if( menu.child.length === 0 ) {
+                                    if( menu.parent.type === 'post_type' ) {
+                                        url = '/page/'+menu.parent.slug;
                                     }else {
-                                        var url = menu.parent.url;
+                                        url = menu.parent.url;
                                     }
                                     return(
                                         <React.Fragment key={index}>
@@ -72,10 +72,10 @@ const Navigation = (props) => {
                                                 <Link to={'/page/'+menu.parent.slug} className="dropdown-item">{menu.parent.title}</Link>
                                                 {
                                                     menu.child.map( (child, index) => {
-                                                        if( menu.child.type == 'post_type' ) {
-                                                            var url = '/page/'+menu.parent.slug;
+                                                        if( menu.child.type === 'post_type' ) {
+                                                            url = '/page/'+menu.parent.slug;
                                                         }else {
-                                                            var url = menu.parent.url;
+                                                            url = menu.parent.url;
                                                         }
                                                         return (
                                                             <Link key={index} to={url} className="dropdown-item">{child.title}</Link>

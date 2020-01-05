@@ -1,10 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Row, Col, Form, FormControl, InputGroup, Button } from 'react-bootstrap';
 import { SearchContext } from '../../contexts/SearchContext';
 
 const SearchWidget = (props) => {
-    let history = useHistory();
 
     /**
      * Init Search Keyword State

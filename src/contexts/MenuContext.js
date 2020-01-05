@@ -1,4 +1,5 @@
 import React, { useState, createContext, useEffect } from 'react';
+import config from '../Config';
 import axios from 'axios';
 
 export const MenuContext = createContext();
@@ -11,7 +12,7 @@ const MenuContextProvider = ( props ) => {
     const [menus, setMenus] = useState('');
 
     useEffect( () => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/menus`)
+        axios.get(`${config.app_url}/menus`)
         .then( (res) => {
             setMenus(res.data);
         })

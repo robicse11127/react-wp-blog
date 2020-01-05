@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Jumbotron, Row, Col, Card, Button } from 'react-bootstrap';
-import renderHTML from 'react-render-html';
-import { GeneralContext } from '../contexts/GeneralContext';
+import config from '../Config';
 
 import AuthorPageHeader from '../partials/AuthorPageHeader';
 
@@ -50,25 +49,20 @@ const Author = () => {
     }
 
     /**
-     * Destructuring GeneralContext
-     */
-    const { siteInfo } = useContext(GeneralContext);
-
-    /**
      * Pagination Init
      */
     let prevBtn = true;
     let nextBtn = true;
 
-    if( params.page == 1 ) {
+    if( params.page === 1 ) {
         prevBtn = false;
     }
-    if( params.page == meta['x-wp-totalpages'] ) {
+    if( params.page === meta['x-wp-totalpages'] ) {
         nextBtn = false;
     }
 
     useEffect( () => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
+        axios.get(`${config.app_url}/posts`, {
             params: params
         })
         .then( (res) => {
@@ -81,8 +75,6 @@ const Author = () => {
         <React.Fragment>
             <Jumbotron>
                 <Container>
-                    {/* <h1>{siteInfo.site_title}</h1>
-                    <p>{siteInfo.site_tag_line}</p> */}
                     <AuthorPageHeader id={id} />
                 </Container>
             </Jumbotron>

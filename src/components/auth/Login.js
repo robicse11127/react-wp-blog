@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../../Config';
 import { Redirect } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import Axios from 'axios';
@@ -27,7 +28,7 @@ class Login extends React.Component {
             password: this.state.password
         }
 
-        Axios.post(`http://localhost/wp-react/wp-json/jwt-auth/v1/token`, loginData)
+        Axios.post(`${config.base_url}/wp-json/jwt-auth/v1/token`, loginData)
         .then( (res) => {
             if( 'undefined' === res.data.token ) {
                 this.setState({error: res.data.message, isLoading: false});

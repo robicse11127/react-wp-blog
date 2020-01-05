@@ -8,8 +8,8 @@ const MediaImageWidget = (props) => {
                 <h4 className="widget-title">{props.widget.instance.title}</h4>
             </Col>
             <Col md={12}>
-                <a href={props.widget.instance.link_url} target="_blank">
-                    <img src={props.widget.instance.url} />
+                <a href={props.widget.instance.link_url} target="_blank" rel="noopener noreferrer">
+                    <img src={props.widget.instance.url} alt="" />
                 </a>
             </Col>
         </Row>

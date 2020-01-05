@@ -1,13 +1,16 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import config from '../Config';
 
 export const PostsContext = createContext();
 
 const PostsContextProvider = ( props ) => {
+
+    console.log(config.app_url);
     /**
      * Init Post State
      */
-    const [posts,setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
     /**
      * Init Params State
      */
@@ -38,11 +41,47 @@ const PostsContextProvider = ( props ) => {
         }
     }
 
+    const undate_post_loved = (e) => {
+        e.preventDefault();
+        let postID = parseInt(e.currentTarget.getAttribute('data-post-id', 10));
+        let love = parseInt(e.currentTarget.getAttribute('data-love'), 10);
+        love += 1;
+
+        let metadata = {
+            metaboxes: {
+                _post_loved: love
+            }
+        }
+
+        let token = localStorage.getItem('token');
+        if(token) {
+            axios.post(`${config.app_url}/posts/${postID}`, metadata, {
+                headers: {
+                    'Authorization' : `Bearer ${token}`
+                }
+            })
+            .then( (res) => {
+                let postItems = [...posts];
+                postItems.map( (item) => {
+                    if( item.id === postID ) {
+                        item.metaboxes._post_loved = love;
+                    }
+                })
+                setPosts(postItems);
+            })
+            .catch( (err) => {
+                console.log(err.response);
+            })
+        }else {
+            alert('You must logged in')
+        }
+    }
+
     /**
      * Trigger Hook to fetch data
      */
     useEffect( ()  => {
-        axios.get(`http://localhost/wp-react/wp-json/wp/v2/posts`, {
+        axios.get(`${config.app_url}/posts`, {
             params: params
         })
         .then( (res) => {
@@ -55,7 +94,7 @@ const PostsContextProvider = ( props ) => {
      * Return Provider
      */
     return (  
-        <PostsContext.Provider value={{posts, meta, next, prev, params}}>
+        <PostsContext.Provider value={{posts, meta, next, prev, params, undate_post_loved}}>
             { props.children }
         </PostsContext.Provider>
     );

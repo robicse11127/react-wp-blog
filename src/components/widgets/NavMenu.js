@@ -12,7 +12,7 @@ const NavMenuWidget = (props) => {
                 <Nav className="flex-column">
                     {
                         props.widget.value.map((item, index) => {
-                            if(item.type == 'custom') {
+                            if(item.type === 'custom') {
                                 return(
                                     <Link to={'/'+ item.url} className="nav-link" key={index}>{item.title}</Link>
                                 )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Jumbotron } from 'react-bootstrap';
+import config from '../Config';
 import Axios from 'axios';
 
 const AuthorPageHeader = (props) => {
@@ -7,7 +7,7 @@ const AuthorPageHeader = (props) => {
     const [user, setUser] = useState('');
 
     useEffect(() => {
-        Axios.get(`http://localhost/wp-react/wp-json/wp/v2/users/`+props.id)
+        Axios.get(`${config.app_url}/users/`+props.id)
         .then( (res) => {
             setUser(res.data)
         })
