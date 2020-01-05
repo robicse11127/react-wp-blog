@@ -24,14 +24,17 @@ const Single = () => {
         })
         .then( (res) => {
             setPost(res.data);
-            loading = false
         })
     },[slug]);
 
-    if( post === '' ) {
-        return(
-            <NotFound />
-        )
+    if( post == '' ) {
+        if( loading ) {
+            return (<h2>Loading...</h2>)
+        }else {
+            return(
+                <NotFound />
+            )
+        }
     }
 
     return (
