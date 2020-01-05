@@ -4,6 +4,7 @@ import { Navbar, NavDropdown, Nav, Form, FormControl, Container } from 'react-bo
 import { GeneralContext } from '../contexts/GeneralContext';
 import { MenuContext } from '../contexts/MenuContext';
 import { SearchContext } from '../contexts/SearchContext';
+import { FaSearch } from 'react-icons/fa';
 
 import AuthMenu from '../components/auth/AuthMenu';
 import LogoutMenu from '../components/auth/LogoutMenu';
@@ -89,11 +90,13 @@ const Navigation = (props) => {
                             })
                         }
                     </Nav>
-                    {authMenu}
+                    
                     <Form inline onSubmit={ (e) => handleSearch(e, keyword)}>
                         <FormControl type="text" placeholder="Enter Keywords" className="mr-sm-2" value={keyword} onChange={ (e) => setKeyword(e.target.value) }  />
-                        <input type="submit" className="btn btn-info" value="Search" />
+                        <button type="submit" className="btn btn-info"><FaSearch /></button>
                     </Form>
+
+                    {authMenu}
                 </Container>
             </Navbar>
         </React.Fragment>

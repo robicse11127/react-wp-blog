@@ -10,6 +10,7 @@ import config from '../Config';
 const Single = () => {
 
     let { slug } = useParams();
+    let loading = true;
 
     const [post, setPost] = useState([]);
 
@@ -23,6 +24,7 @@ const Single = () => {
         })
         .then( (res) => {
             setPost(res.data);
+            loading = false
         })
     },[slug]);
 

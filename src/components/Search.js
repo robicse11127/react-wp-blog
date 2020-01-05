@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Row, Col, Jumbotron, Container, Card, Button } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import { SearchContext } from '../contexts/SearchContext';
 
@@ -54,7 +54,7 @@ const Search = () => {
                                 return(
                                     <Card className="mb-2" key={item.id}>
                                         <Card.Body>
-                                            {item.title}
+                                            <Link to={'/'+item.slug}>{item.title}</Link>
                                         </Card.Body>
                                     </Card>
                                 )

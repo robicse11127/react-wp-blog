@@ -1,24 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { PostsContext } from '../contexts/PostsContext';
 import { GeneralContext } from '../contexts/GeneralContext';
 import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 
+import Masonry from 'react-masonry-component';
+
 const Posts = () => {
+
+    const masonryOptions = {
+        transitionDuration: 0
+    };
+     
+    const imagesLoadedOptions = { background: '.my-bg-image-el' }
+
     /**
      * Destructuring PostsContext
      */
-    const {posts, params, meta, next, prev, undate_post_loved} = useContext(PostsContext);
+    const {posts, params, meta, next, prev, undate_post_loved, gsapPostAnimation} = useContext(PostsContext);
 
     /**
      * Destructuring GeneralContext
      */
     const { siteInfo } = useContext(GeneralContext);
-
-    if( posts === '' ) {
-        return posts;
-    }
 
     /**
      * Pagination Init
@@ -33,6 +38,12 @@ const Posts = () => {
         nextBtn = false;
     }
 
+
+    if( posts === '' ) {
+        return posts;
+    }
+
+    
     return (
         <React.Fragment>
             <Jumbotron>
@@ -43,14 +54,21 @@ const Posts = () => {
             </Jumbotron>
 
             <Container className="mt-5 mb-5">
-                <Row>
+                <Masonry
+                    className={'row'} // default ''
+                    elementType={'div'} // default 'div'
+                    options={masonryOptions} // default {}
+                    disableImagesLoaded={false} // default false
+                    updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                    imagesLoadedOptions={imagesLoadedOptions} // default {}
+                >
                 {
                     /**
                      * Mapping through posts
                      */
                     posts.map( (item, index) => {
                         return(
-                            <Col md={4} key={index}>
+                            <Col md={4} key={index} className="post">
                                 <Card className="text-left">
                                     <Card.Img variant="top" src={item.featured_image_src.medium} />
                                     <Card.Body>
@@ -85,7 +103,7 @@ const Posts = () => {
                         );
                     })
                 }
-                </Row>
+                </Masonry>
                 <Row className="mt-3">
                     <Col md={12}>
                         <Button variant="outline-info" disabled={prevBtn ? '' : 'disabled'} onClick={prev}>Prev</Button> &nbsp;

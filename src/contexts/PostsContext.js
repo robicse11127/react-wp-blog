@@ -1,12 +1,20 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import config from '../Config';
+import { gsap } from 'gsap';
+import Masonry from 'react-masonry-component';
 
 export const PostsContext = createContext();
 
 const PostsContextProvider = ( props ) => {
 
-    console.log(config.app_url);
+    /**
+     * Gsap Animation
+     */
+    const gsapPostAnimation = () => {
+        gsap.from( '.post', { duration: 1, y: 60, opacity: 0, ease: 'back', stagger: 0.25 } )
+    }
+
     /**
      * Init Post State
      */
@@ -87,6 +95,8 @@ const PostsContextProvider = ( props ) => {
         .then( (res) => {
             setPosts(res.data);
             setMeta(res.headers);
+        }).then( ()  => {
+            gsap.from( '.post', { duration: 1, y: 60, opacity: 0, ease: 'back', stagger: 0.25 } )
         })
     }, [params]);
 
@@ -94,7 +104,7 @@ const PostsContextProvider = ( props ) => {
      * Return Provider
      */
     return (  
-        <PostsContext.Provider value={{posts, meta, next, prev, params, undate_post_loved}}>
+        <PostsContext.Provider value={{posts, meta, next, prev, params, undate_post_loved, gsapPostAnimation}}>
             { props.children }
         </PostsContext.Provider>
     );
