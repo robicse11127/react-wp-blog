@@ -7,6 +7,7 @@ import { SearchContext } from '../contexts/SearchContext';
 const Search = () => {
 
     let { keyword } = useParams();
+    let showPagination = true;
 
     /**
      * Destructuring SearchContext
@@ -26,8 +27,12 @@ const Search = () => {
     if( params.page === 1 ) {
         prevBtn = false;
     }
-    if( params.page === meta['x-wp-totalpages'] ) {
+    if( params.page >= meta['x-wp-totalpages'] ) {
         nextBtn = false;
+    }
+
+    if( searchPosts == '' ) {
+        showPagination = false;
     }
 
     return (
@@ -58,14 +63,23 @@ const Search = () => {
                     </Col>
                 </Row>
             </Container>
-            <Container>
-                <Row className="mb-5 mt-3">
-                    <Col md={12}>
-                        <Button variant="outline-secondary" disabled={prevBtn ? '' : 'disabled'} onClick={ () => prev(keyword)}>Prev</Button> &nbsp;
-                        <Button variant="outline-secondary" disabled={nextBtn ? '' : 'disabled'} onClick={ () => next(keyword)}>Next</Button>
-                    </Col>
-                </Row>
-            </Container>
+            { showPagination ? (
+                <Container>
+                    <Row className="mb-5 mt-3">
+                        <Col md={12}>
+                            <Button variant="outline-secondary" disabled={prevBtn ? '' : 'disabled'} onClick={ () => prev(keyword)}>Prev</Button> &nbsp;
+                            <Button variant="outline-secondary" disabled={nextBtn ? '' : 'disabled'} onClick={ () => next(keyword)}>Next</Button>
+                        </Col>
+                    </Row>
+                </Container>
+                ) : (
+                    <Container>
+                        <Row className="mb-5">
+                            <Col md={12}><h2>Sorry, nothing found!</h2></Col>
+                        </Row>
+                    </Container>
+                )
+            }
         </React.Fragment>
     );
 }

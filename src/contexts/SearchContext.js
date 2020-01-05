@@ -34,14 +34,17 @@ const SearchContextProvider = (props) => {
      */
     const handleSearch = (e, search) => {
         e.preventDefault();
-        history.push('/search/'+search);
-
-        setParams({
-            subtype: 'post',
-            search: search,
-            per_page: 3,
-            page: 1
-        })
+        if( search === '' ) {
+            history.push('/');
+        }else {
+            history.push('/search/'+search);
+            setParams({
+                subtype: 'post',
+                search: search,
+                per_page: 3,
+                page: 1
+            })
+        }
     }
 
     /**
