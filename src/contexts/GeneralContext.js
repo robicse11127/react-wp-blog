@@ -12,7 +12,7 @@ const GeneralContextProvider = ( props ) => {
     const[siteInfo, setSiteInfo] = useState('');
 
     useEffect( () => {
-        axios.get(`${config.app_url}/general`)
+        axios.get(`${config.api_url}/general`)
         .then( (res) => {
             setSiteInfo(res.data)
         })

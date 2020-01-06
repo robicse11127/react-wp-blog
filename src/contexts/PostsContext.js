@@ -89,7 +89,7 @@ const PostsContextProvider = ( props ) => {
      * Trigger Hook to fetch data
      */
     useEffect( ()  => {
-        axios.get(`${config.app_url}/posts`, {
+        axios.get(`${config.api_url}/posts`, {
             params: params
         })
         .then( (res) => {

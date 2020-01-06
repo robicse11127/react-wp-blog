@@ -9,7 +9,7 @@ const WidgetContextProvider = (props) => {
     const [widgets, setWidgets] = useState([]);
 
     useEffect( () => {
-        axios.get(`${config.app_url}/widgets`)
+        axios.get(`${config.api_url}/widgets`)
         .then( (res) => {
             setWidgets(res.data);
         })

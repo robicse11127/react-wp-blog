@@ -11,6 +11,7 @@ const Single = () => {
 
     let { slug } = useParams();
     let loading = true;
+    var notFound = false;
 
     const [post, setPost] = useState([]);
 
@@ -24,22 +25,23 @@ const Single = () => {
         })
         .then( (res) => {
             setPost(res.data);
+            if( res.data == '' ) {
+                notFound = true;
+            }
+            loading = false;
         })
     },[slug]);
 
-    if( post == '' ) {
-        if( loading ) {
-            return (<h2>Loading...</h2>)
-        }else {
-            return(
-                <NotFound />
-            )
-        }
-    }
+    // if( post == '' ) {
+    //     notFound = true;
+    //     loading = false;
+    // }else {}
+
+    console.log(notFound)
 
     return (
         <React.Fragment>
-            {
+            { notFound ? ( <NotFound /> ) : 
                 post.map( (item, index) => {
                     return(
                         <React.Fragment key={index}>
@@ -100,6 +102,8 @@ const Single = () => {
                     )
                 })
             }
+
+            
         </React.Fragment>
     );
 }

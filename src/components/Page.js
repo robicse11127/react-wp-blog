@@ -13,7 +13,7 @@ const Page = () => {
     const [page, setPage] = useState([]);
 
     useEffect( () => {
-        axios.get(`${config.app_url}/pages`, {
+        axios.get(`${config.api_url}/pages`, {
             params: {
                 slug: slug
             }

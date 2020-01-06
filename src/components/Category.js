@@ -62,7 +62,7 @@ const Category = () => {
     }
 
     useEffect( () => {
-        axios.get(`${config.app_url}/posts`, {
+        axios.get(`${config.api_url}/posts`, {
             params: params
         })
         .then( (res) => {

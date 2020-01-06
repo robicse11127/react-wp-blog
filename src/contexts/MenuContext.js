@@ -12,7 +12,7 @@ const MenuContextProvider = ( props ) => {
     const [menus, setMenus] = useState('');
 
     useEffect( () => {
-        axios.get(`${config.app_url}/menus`)
+        axios.get(`${config.api_url}/menus`)
         .then( (res) => {
             setMenus(res.data);
         })
