@@ -38,7 +38,7 @@ const Single = () => {
     
     return (
         <React.Fragment>
-            {console.log(isNotFound)}
+            { console.log(isNotFound) }
             { isNotFound ? (<NotFound />) :  
                 isLoading ? ( <Loading /> ) : 
                 post.map( (item, index) => {
