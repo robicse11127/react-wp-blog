@@ -79,7 +79,7 @@ const SearchContextProvider = (props) => {
      * Trigger hook to fetch data
      */
     useEffect( () => {
-        axios.get(`${config.app_url}/search`, {
+        axios.get(`${config.api_url}/search`, {
             params: params
         })
         .then( (res) => {

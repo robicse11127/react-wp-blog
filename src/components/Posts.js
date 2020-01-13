@@ -9,6 +9,8 @@ import Masonry from 'react-masonry-component';
 
 const Posts = () => {
 
+    let showPagination = true;
+
     const masonryOptions = {
         transitionDuration: 0
     };
@@ -34,14 +36,16 @@ const Posts = () => {
     if( params.page === 1 ) {
         prevBtn = false;
     }
-    if( params.page === meta['x-wp-totalpages'] ) {
+    if( params.page >= meta['x-wp-totalpages'] ) {
         nextBtn = false;
     }
 
 
     if( posts === '' ) {
-        return posts;
+        showPagination = false;
     }
+
+    console.log(nextBtn)
 
     
     return (
@@ -104,13 +108,23 @@ const Posts = () => {
                     })
                 }
                 </Masonry>
-                <Row className="mt-3">
-                    <Col md={12}>
-                        <Button variant="outline-info" disabled={prevBtn ? '' : 'disabled'} onClick={prev}>Prev</Button> &nbsp;
-                        <Button variant="outline-info" disabled={nextBtn ? '' : 'disabled'} onClick={next}>Next</Button>
-                    </Col>
-                </Row>
             </Container>
+            { showPagination ? (
+                <Container>
+                    <Row className="mt-3 mb-5">
+                        <Col md={12}>
+                            <Button variant="outline-info" disabled={prevBtn ? '' : 'disabled'} onClick={prev}>Prev</Button> &nbsp;
+                            <Button variant="outline-info" disabled={nextBtn ? '' : 'disabled'} onClick={next}>Next</Button>
+                        </Col>
+                    </Row>
+                </Container>
+            ) : (
+                <Container>
+                    <Row className="mb-5">
+                        <Col md={12}><h2>Sorry, nothing found!</h2></Col>
+                    </Row>
+                </Container>
+            ) }
         </React.Fragment>
     );
 }

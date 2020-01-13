@@ -5,41 +5,42 @@ import { Container, Row, Col } from 'react-bootstrap';
 import renderHTML from 'react-render-html';
 import ReactDisqusComments from 'react-disqus-comments';
 import NotFound from '../components/NotFound';
+import Loading from '../components/Loading';
 import config from '../Config';
 
 const Single = () => {
 
     let { slug } = useParams();
-    let loading = true;
+    const [isNotFound, setIsNotFound] = useState();
+    const [isLoading, setIsLoading] = useState([true]);
 
     const [post, setPost] = useState([]);
 
     const disqusUrl = 'http://localhost:3000/'+slug;
 
     useEffect( () => {
-        axios.get(`${config.app_url}/posts`, {
+        axios.get(`${config.api_url}/posts`, {
             params: {
                 slug: slug
             }
         })
         .then( (res) => {
-            setPost(res.data);
+            setPost(res.data); 
+            if( res.data.length > 0 ) {
+                setIsNotFound(false)
+                setIsLoading(false)
+            }else {
+                setIsNotFound(true)
+            }
         })
     },[slug]);
-
-    if( post == '' ) {
-        if( loading ) {
-            return (<h2>Loading...</h2>)
-        }else {
-            return(
-                <NotFound />
-            )
-        }
-    }
-
+    
+    
     return (
         <React.Fragment>
-            {
+            { console.log(isNotFound) }
+            { isNotFound ? (<NotFound />) :  
+                isLoading ? ( <Loading /> ) : 
                 post.map( (item, index) => {
                     return(
                         <React.Fragment key={index}>
@@ -98,8 +99,10 @@ const Single = () => {
                         </React.Fragment>
                         
                     )
-                })
+                }) 
             }
+
+            
         </React.Fragment>
     );
 }
