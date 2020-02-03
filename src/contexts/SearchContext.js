@@ -83,6 +83,7 @@ const SearchContextProvider = (props) => {
             params: params
         })
         .then( (res) => {
+            console.log(res.data)
             setSearchPosts(res.data)
             setMeta(res.headers);
         })  
