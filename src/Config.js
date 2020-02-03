@@ -1,5 +1,5 @@
 export default {
-    base_url: 'http://localhost/wp-react',
-    api_url: 'http://localhost/wp-react/wp-json/wp/v2',
-    app_url: 'http://localhost:3000',
+    base_url: 'https://wpdevlopment.000webhostapp.com',
+    api_url: 'https://wpdevlopment.000webhostapp.com/wp-json/wp/v2',
+    app_url: 'https://wpdevlopment.000webhostapp.com',
 }
