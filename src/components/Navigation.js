@@ -54,7 +54,7 @@ const Navigation = (props) => {
                     </Navbar.Brand>
                     <Nav className="mr-auto">
                         {
-                            menus.top.map( (menu, index) => {
+                            menus.primary.map( (menu, index) => {
                                 if( menu.child.length === 0 ) {
                                     if( menu.parent.type === 'post_type' ) {
                                         url = '/page/'+menu.parent.slug;
