@@ -39,14 +39,9 @@ const Posts = () => {
     if( params.page >= meta['x-wp-totalpages'] ) {
         nextBtn = false;
     }
-
-
     if( posts === '' ) {
         showPagination = false;
     }
-
-    console.log(nextBtn)
-
     
     return (
         <React.Fragment>

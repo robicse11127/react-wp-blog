@@ -56,7 +56,7 @@ function App() {
 										<Route exact path="/page/:slug">
 											<Page />
 										</Route>
-										<Route exact path="/search/:keyword">
+										<Route exact path="/s/:keyword">
 											<Search />
 										</Route>
 										<Route exact path="/app/login">

@@ -35,6 +35,7 @@ const Search = () => {
         showPagination = false;
     }
 
+
     return (
         <React.Fragment>
             <Jumbotron>
@@ -54,7 +55,7 @@ const Search = () => {
                                 return(
                                     <Card className="mb-2" key={item.id}>
                                         <Card.Body>
-                                            <Link to={'/'+item.slug}>{item.title}</Link>
+                                            <Link to={'/'+item.slug}>{item.title.rendered}</Link>
                                         </Card.Body>
                                     </Card>
                                 )
@@ -63,7 +64,7 @@ const Search = () => {
                     </Col>
                 </Row>
             </Container>
-            { showPagination ? (
+            {/* { showPagination ? (
                 <Container>
                     <Row className="mb-5 mt-3">
                         <Col md={12}>
@@ -79,7 +80,7 @@ const Search = () => {
                         </Row>
                     </Container>
                 )
-            }
+            } */}
         </React.Fragment>
     );
 }

@@ -18,7 +18,6 @@ const SearchContextProvider = (props) => {
      * Init Params State
      */
     const [params, setParams] = useState({
-        subtype: 'post',
         search: '',
         per_page: 3,
         page: 1
@@ -37,9 +36,8 @@ const SearchContextProvider = (props) => {
         if( search === '' ) {
             history.push('/');
         }else {
-            history.push('/search/'+search);
+            history.push('/s/'+search);
             setParams({
-                subtype: 'post',
                 search: search,
                 per_page: 3,
                 page: 1
@@ -79,13 +77,9 @@ const SearchContextProvider = (props) => {
      * Trigger hook to fetch data
      */
     useEffect( () => {
-        axios.get(`${config.api_url}/search`, {
-            params: params
-        })
+        axios.get(`${config.api_url}/s/`+ params.search)
         .then( (res) => {
-            console.log(res.data)
             setSearchPosts(res.data)
-            setMeta(res.headers);
         })  
     }, [params] )
 
